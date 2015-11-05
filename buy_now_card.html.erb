@@ -1,12 +1,14 @@
 <%
 
+require "./skus.rb"
+
 n = 5
 m = 4
 o = 3
 
-attrs1 = (1..1).map {|i| "Size #{i}" }
-attrs2 = (1..1).map {|j| "Color #{j}" }
-attrs3 = (1..1).map {|k| "Style #{k}" }
+attrs1 = (1..n).map {|i| "Size #{i}" }
+attrs2 = (1..m).map {|j| "Color #{j}" }
+attrs3 = (1..o).map {|k| "Style #{k}" }
 
 bvs = {
   "twitter:maxage" => "300",
@@ -36,7 +38,7 @@ attrs1.each_index do |i|
       attr1 = attrs1[i]
       attr2 = attrs2[j]
       attr3 = attrs3[k]
-      bvs["#{pre}id"] = "sku_7IXbIktAVOw0y3"
+      bvs["#{pre}id"] = SKUS[n - 1] || "sku_7IXbIktAVOw0y3"
       bvs["#{pre}title"] = "Fake Item - #{attr1} - #{attr2} - #{attr3}"
       bvs["#{pre}inventory_count"] = rand(100).to_s
       bvs["#{pre}last_updated"] = Time.now.getutc.to_i.to_s
