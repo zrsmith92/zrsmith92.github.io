@@ -1,0 +1,60 @@
+<%
+
+n = 5
+m = 4
+o = 3
+
+attrs1 = (1..1).map {|i| "Size #{i}" }
+attrs2 = (1..1).map {|j| "Color #{j}" }
+attrs3 = (1..1).map {|k| "Style #{k}" }
+
+bvs = {
+  "twitter:maxage" => "300",
+  "twitter:card" => "174717117:buy_now",
+  "twitter:marketplace:id" => "578314987389884312",
+  "twitter:marketplace:name" => "Market Palace",
+  "twitter:marketplace:merchant:id" => "595306934699368450",
+  "twitter:marketplace:merchant:name" => "Mer Chant",
+  "twitter:item:title" => "Fake Item",
+  "twitter:item:description" => "My fake item is super cool",
+  "twitter:item:id" => "9876",
+  "twitter:item:currency" => "USD",
+  "twitter:item:attribute1" => "Size",
+  "twitter:item:attribute2" => "Color",
+  "twitter:item:attribute3" => "Style",
+  "twitter:image:item" => "https://d1s82l1atzspzx.cloudfront.net/threadless-shop/products/4465/1272x920design_01.jpg?h=720&w=720",
+  "twitter:image:item:width" => "720",
+  "twitter:image:item:height" => "720"
+}
+
+attrs1.each_index do |i|
+  attrs2.each_index do |j|
+    attrs3.each_index do |k|
+
+      n = (i * m * o) + (j * o) + k + 1
+      pre = "twitter:item:variant#{n}:"
+      attr1 = attrs1[i]
+      attr2 = attrs2[j]
+      attr3 = attrs3[k]
+      bvs["#{pre}id"] = (3000 + n).to_s
+      bvs["#{pre}title"] = "Fake Item - #{attr1} - #{attr2} - #{attr3}"
+      bvs["#{pre}inventory_count"] = rand(100).to_s
+      bvs["#{pre}last_updated"] = Time.now.getutc.to_i.to_s
+      bvs["#{pre}price"] = 300000.to_s
+      bvs["#{pre}attribute1:text"] = attr1
+      bvs["#{pre}attribute2:text"] = attr2
+      bvs["#{pre}attribute3:text"] = attr3
+
+    end
+  end
+end
+
+%>
+<!doctype html>
+<html>
+  <head>
+<% bvs.each do |k, v| %>
+    <meta name="<%= k %>" content="<%= v %>">
+<% end %>
+  </head>
+</html>
