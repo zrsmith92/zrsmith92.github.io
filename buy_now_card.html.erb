@@ -40,8 +40,8 @@ attrs1.each_index do |i|
       attr3 = attrs3[k]
       bvs["#{pre}id"] = SKUS[n - 1] || "sku_7IXbIktAVOw0y3"
       bvs["#{pre}title"] = "Fake Item - #{attr1} - #{attr2} - #{attr3}"
-      # bvs["#{pre}inventory_count"] = n % 17 == 0 ? 0.to_s : rand(100).to_s
-      bvs["#{pre}inventory_count"] = rand(100).to_s
+      bvs["#{pre}inventory_count"] = n % 17 == 0 ? 0.to_s : rand(100).to_s
+      # bvs["#{pre}inventory_count"] = rand(100).to_s
       bvs["#{pre}last_updated"] = Time.now.getutc.to_i.to_s
       bvs["#{pre}price"] = "1000000"
       bvs["#{pre}attribute1:text"] = attr1
